@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-// GET
+// GET: Mengambil semua Journal
 export async function GET() {
   try {
     const journals = await prisma.journal.findMany({
@@ -26,7 +26,7 @@ export async function GET() {
   }
 }
 
-// POST
+// POST: Menambahkan Journal baru
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -44,10 +44,19 @@ export async function POST(request: Request) {
       );
     }
 
+    const temperature = Number(body.temperature);
+
+    if (!Number.isFinite(temperature)) {
+      return NextResponse.json(
+        { error: "Invalid temperature value" },
+        { status: 400 }
+      );
+    }
+
     const journal = await prisma.journal.create({
       data: {
         city: String(body.city),
-        temperature: Number(body.temperature),
+        temperature,
         weather: String(body.weather),
         description: String(body.description),
         note: String(body.note),
