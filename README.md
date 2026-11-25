@@ -82,6 +82,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Turso Documentation](https://docs.turso.tech/)
 - [OpenWeather API Documentation](https://openweathermap.org/api)
 
----
 
-Developed as a learning project to explore full-stack web development, database integration, API usage, and deployment.
